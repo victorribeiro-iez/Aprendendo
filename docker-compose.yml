@@ -1,0 +1,26 @@
+
+services:
+
+  db:
+    image: postgres
+    container_name: postgres
+    restart: always
+
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: Cliente
+      PGDATA: /var/lib/postgresql/data/pgdata
+      
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+
+networks:
+  default:
+    name: local-network
+    external: true
+      
+#Criar um network antes de rodar docker compose up : docker network create local-network
